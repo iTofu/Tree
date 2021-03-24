@@ -57,6 +57,8 @@ class ViewController: UIViewController {
   }
 
   private func testStackView() {
+    guard #available(iOS 9.0, *) else { return }
+
     let stackView = UIStackView()
     stackView.frame = CGRect(x: 150, y: 500, width: 200, height: 200)
     stackView.distribution = .fillEqually

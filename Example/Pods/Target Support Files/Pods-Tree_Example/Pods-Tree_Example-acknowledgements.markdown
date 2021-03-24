@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## Tree
 
-Copyright (c) 2021 iTofu <leodaxia@gmail.com>
+Copyright (c) 2021 Leo <leodaxia@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

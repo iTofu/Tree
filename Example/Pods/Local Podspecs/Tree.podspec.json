@@ -1,22 +1,25 @@
 {
   "name": "Tree",
-  "version": "0.1.0",
-  "summary": "A short description of Tree.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "0.2.0",
+  "summary": "Tree can help you manage views and layers more clearly.",
+  "description": "🎏 Tree can help you manage views and layers more clearly.",
   "homepage": "https://github.com/iTofu/Tree",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "iTofu": "leodaxia@gmail.com"
+    "Leo": "leodaxia@gmail.com"
   },
   "source": {
     "git": "https://github.com/iTofu/Tree.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
+  "social_media_url": "https://twitter.com/leodaxia",
+  "swift_versions": "4.2",
   "platforms": {
-    "ios": "9.0"
+    "ios": "8.0"
   },
-  "source_files": "Tree/Classes/**/*"
+  "source_files": "Tree/Classes/**/*",
+  "swift_version": "4.2"
 }
