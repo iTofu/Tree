@@ -1,0 +1,22 @@
+{
+  "name": "Tree",
+  "version": "0.1.0",
+  "summary": "A short description of Tree.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/iTofu/Tree",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "iTofu": "leodaxia@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/iTofu/Tree.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "Tree/Classes/**/*"
+}

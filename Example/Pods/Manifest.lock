@@ -1,0 +1,16 @@
+PODS:
+  - Tree (0.1.0)
+
+DEPENDENCIES:
+  - Tree (from `../`)
+
+EXTERNAL SOURCES:
+  Tree:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Tree: e6bec56bd26426aaddd592093873bd93fa75a813
+
+PODFILE CHECKSUM: ca42ee7ae841467d2932946e1f6ba3c30ecb5ff2
+
+COCOAPODS: 1.10.1
