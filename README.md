@@ -11,6 +11,8 @@
 
 🎏 Tree can help you manage views more clearly.
 
+⚠️ **Import: You'd best using this lib after Swift 5.4, otherwise you have to do `import Tree` everywhere.** [Swift Bugfix Link](https://forums.swift.org/t/exported-import-does-not-properly-export-custom-operators/39090)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
