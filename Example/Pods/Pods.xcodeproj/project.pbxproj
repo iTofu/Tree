@@ -418,9 +418,9 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		595D62C8E13F14431614F0E310D961E6 /* Release */ = {
+		33623DD866C90CE59326BA7867C738A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9942348B2FD9B7BA5EC02A4178554B89 /* Tree.release.xcconfig */;
+			baseConfigurationReference = 725A522E133E50ADEFD74E21B7324068 /* Tree.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -441,13 +441,12 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		6647AF956045EC592037A338AC13D3CC /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -576,36 +575,6 @@
 			};
 			name = Release;
 		};
-		B4260C8A029020494793D554222B3FAF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 725A522E133E50ADEFD74E21B7324068 /* Tree.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Tree/Tree-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Tree/Tree-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Tree/Tree.modulemap";
-				PRODUCT_MODULE_NAME = Tree;
-				PRODUCT_NAME = Tree;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		D9832D87262AE51D686680ED4AA1223A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF3702FAC78DAF54A4061D198FED955C /* Pods-Tree_Example.debug.xcconfig */;
@@ -704,6 +673,37 @@
 			};
 			name = Debug;
 		};
+		F66958F958A5DDCA78457B5258382FFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9942348B2FD9B7BA5EC02A4178554B89 /* Tree.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Tree/Tree-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Tree/Tree-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Tree/Tree.modulemap";
+				PRODUCT_MODULE_NAME = Tree;
+				PRODUCT_NAME = Tree;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FE5A473BC07FF1F4DC95859D74759FB7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7328391908D27D5AD5B2DA453F8614F3 /* Pods-Tree_Tests.release.xcconfig */;
@@ -770,8 +770,8 @@
 		FB1AFB303B186714304CCD7551E9AC35 /* Build configuration list for PBXNativeTarget "Tree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B4260C8A029020494793D554222B3FAF /* Debug */,
-				595D62C8E13F14431614F0E310D961E6 /* Release */,
+				33623DD866C90CE59326BA7867C738A1 /* Debug */,
+				F66958F958A5DDCA78457B5258382FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

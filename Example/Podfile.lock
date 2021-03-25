@@ -1,5 +1,5 @@
 PODS:
-  - Tree (0.2.0)
+  - Tree (0.3.0)
 
 DEPENDENCIES:
   - Tree (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Tree: 3cb8a422275f3ab4ededa4b1f54d73bc82f838e5
+  Tree: d1f9f4fad5529d640f85df7d002815731ed32491
 
 PODFILE CHECKSUM: fa08301d8bdbd0d266d3722462831c79036d18a5
 
