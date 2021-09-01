@@ -1,5 +1,5 @@
 //
-//  UIStackView.swift
+//  UIStackViewExtension.swift
 //  Tree
 //
 //  Created by LΞO on 2021/3/24.
@@ -35,8 +35,16 @@ import UIKit
 /// - Returns: The superview.
 @available(iOS 9.0, *)
 @discardableResult
-public func <-(superview: UIStackView, subview: UIView) -> UIStackView {
-  superview.addArrangedSubview(subview)
+public func <-(superview: UIStackView, subview: AnyObject?) -> UIStackView {
+  guard let subview = subview else { return superview }
+
+  if let view = subview as? UIView {
+    superview.addArrangedSubview(view)
+  } else if let (view, index) = subview as? (UIView, Int) {
+    superview.insertArrangedSubview(view, at: index)
+  } else {
+    fatalError("WARNING: invalid subview: \(String(describing: subview))")
+  }
   return superview
 }
 
@@ -47,8 +55,18 @@ public func <-(superview: UIStackView, subview: UIView) -> UIStackView {
 /// - Returns: The superview.
 @available(iOS 9.0, *)
 @discardableResult
-public func <-(superview: UIStackView, subviews: [UIView?]) -> UIStackView {
-  superview.addArrangedSubviews(subviews)
+public func <-(superview: UIStackView, subviews: [AnyObject?]) -> UIStackView {
+  for subview in subviews {
+    guard subview != nil else { continue }
+
+    if let view = subview as? UIView {
+      superview.addArrangedSubview(view)
+    } else if let (view, index) = subview as? (UIView, Int) {
+      superview.insertArrangedSubview(view, at: index)
+    } else {
+      fatalError("WARNING: invalid subview: \(String(describing: subview))")
+    }
+  }
   return superview
 }
 

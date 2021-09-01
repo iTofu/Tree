@@ -1,5 +1,5 @@
 //
-//  CALayer.swift
+//  CALayerExtension.swift
 //  Tree
 //
 //  Created by LΞO on 2021/3/24.
@@ -34,8 +34,16 @@ import UIKit
 ///   - sublayer: The layer to be added.
 /// - Returns: The superlayer.
 @discardableResult
-public func <-(superlayer: CALayer, sublayer: CALayer) -> CALayer {
-  superlayer.addSublayer(sublayer)
+public func <-(superlayer: CALayer, sublayer: AnyObject?) -> CALayer {
+  guard let sublayer = sublayer else { return superlayer }
+
+  if let layer = sublayer as? CALayer {
+    superlayer.addSublayer(layer)
+  } else if let (layer, index) = sublayer as? (CALayer, Int) {
+    superlayer.insertSublayer(layer, at: UInt32(index))
+  } else {
+    fatalError("WARNING: invalid sublayer: \(String(describing: superlayer))")
+  }
   return superlayer
 }
 
@@ -45,8 +53,18 @@ public func <-(superlayer: CALayer, sublayer: CALayer) -> CALayer {
 ///   - sublayers: The layers to be added.
 /// - Returns: The superlayer.
 @discardableResult
-public func <-(superlayer: CALayer, sublayers: [CALayer?]) -> CALayer {
-  superlayer.addSublayers(sublayers)
+public func <-(superlayer: CALayer, sublayers: [AnyObject?]) -> CALayer {
+  for sublayer in sublayers {
+    guard sublayer != nil else { continue }
+
+    if let layer = sublayer as? CALayer {
+      superlayer.addSublayer(layer)
+    } else if let (layer, index) = sublayer as? (CALayer, Int) {
+      superlayer.insertSublayer(layer, at: UInt32(index))
+    } else {
+      fatalError("WARNING: invalid sublayer: \(String(describing: superlayer))")
+    }
+  }
   return superlayer
 }
 
