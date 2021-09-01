@@ -1,5 +1,5 @@
 //
-//  UIView.swift
+//  UIViewExtension.swift
 //  Tree
 //
 //  Created by LΞO on 2021/3/24.
@@ -31,22 +31,60 @@ import UIKit
 /// Adds a view to the end of the receiver’s list of subviews.
 /// - Parameters:
 ///   - superview: The superview.
-///   - subview: The view to be added. After being added, this view appears on top of any other subviews.
+///   - subviewOrSublayer: The view or layer to be added. After being added, this view or layer appears on top of any other subviews.
 /// - Returns: The superview.
 @discardableResult
-public func <-(superview: UIView, subview: UIView) -> UIView {
-  superview.addSubview(subview)
+public func <-(superview: UIView, subviewOrSublayer: AnyObject?) -> UIView {
+  guard subviewOrSublayer != nil else { return superview }
+
+  let contentView: UIView
+  if let superview = superview as? UIVisualEffectView {
+    contentView = superview.contentView
+  } else {
+    contentView = superview
+  }
+  if let view = subviewOrSublayer as? UIView {
+    contentView.addSubview(view)
+  } else if let layer = subviewOrSublayer as? CALayer {
+    contentView.layer.addSublayer(layer)
+  } else if let (view, index) = subviewOrSublayer as? (UIView, Int) {
+    contentView.insertSubview(view, at: index)
+  } else if let (layer, index) = subviewOrSublayer as? (CALayer, Int) {
+    contentView.layer.insertSublayer(layer, at: UInt32(index))
+  } else {
+    fatalError("WARNING: invalid subviewOrSublayer: \(String(describing: subviewOrSublayer))")
+  }
   return superview
 }
 
 /// Adds the views to the end of the receiver’s list of subviews.
 /// - Parameters:
 ///   - superview: The superview.
-///   - subviews: The views to be added. After being added, these views appear on top of any other subviews.
+///   - subviewOrSublayers: The views or layers to be added. After being added, these views or layers appear on top of any other subviews.
 /// - Returns: The superview.
 @discardableResult
-public func <-(superview: UIView, subviews: [UIView?]) -> UIView {
-  superview.addSubviews(subviews)
+public func <-(superview: UIView, subviewOrSublayers: [AnyObject?]) -> UIView {
+  let contentView: UIView
+  if let superview = superview as? UIVisualEffectView {
+    contentView = superview.contentView
+  } else {
+    contentView = superview
+  }
+  for subviewOrSublayer in subviewOrSublayers {
+    guard subviewOrSublayer != nil else { continue }
+
+    if let view = subviewOrSublayer as? UIView {
+      contentView.addSubview(view)
+    } else if let layer = subviewOrSublayer as? CALayer {
+      contentView.layer.addSublayer(layer)
+    } else if let (view, index) = subviewOrSublayer as? (UIView, Int) {
+      contentView.insertSubview(view, at: index)
+    } else if let (layer, index) = subviewOrSublayer as? (CALayer, Int) {
+      contentView.layer.insertSublayer(layer, at: UInt32(index))
+    } else {
+      fatalError("WARNING: invalid subviewOrSublayer: \(String(describing: subviewOrSublayer))")
+    }
+  }
   return superview
 }
 
