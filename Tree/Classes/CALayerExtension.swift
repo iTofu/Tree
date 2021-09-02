@@ -35,16 +35,17 @@ import UIKit
 /// - Returns: The superlayer.
 @discardableResult
 public func <-(superlayer: CALayer, sublayer: AnyObject?) -> CALayer {
-  guard let sublayer = sublayer else { return superlayer }
+  return addSublayer(sublayer as Any, to: superlayer)
+}
 
-  if let layer = sublayer as? CALayer {
-    superlayer.addSublayer(layer)
-  } else if let (layer, index) = sublayer as? (CALayer, Int) {
-    superlayer.insertSublayer(layer, at: UInt32(index))
-  } else {
-    fatalError("WARNING: invalid sublayer: \(String(describing: superlayer))")
-  }
-  return superlayer
+/// Appends the layer to the layer’s list of sublayers.
+/// - Parameters:
+///   - superlayer: The superlayer.
+///   - sublayer: The layer to be added.
+/// - Returns: The superlayer.
+@discardableResult
+public func <-(superlayer: CALayer, sublayer: (AnyObject?, Int)) -> CALayer {
+  return addSublayer(sublayer, to: superlayer)
 }
 
 /// Appends the layer to the layer’s list of sublayers.
@@ -53,17 +54,9 @@ public func <-(superlayer: CALayer, sublayer: AnyObject?) -> CALayer {
 ///   - sublayers: The layers to be added.
 /// - Returns: The superlayer.
 @discardableResult
-public func <-(superlayer: CALayer, sublayers: [AnyObject?]) -> CALayer {
+public func <-(superlayer: CALayer, sublayers: [Any?]) -> CALayer {
   for sublayer in sublayers {
-    guard sublayer != nil else { continue }
-
-    if let layer = sublayer as? CALayer {
-      superlayer.addSublayer(layer)
-    } else if let (layer, index) = sublayer as? (CALayer, Int) {
-      superlayer.insertSublayer(layer, at: UInt32(index))
-    } else {
-      fatalError("WARNING: invalid sublayer: \(String(describing: superlayer))")
-    }
+    addSublayer(sublayer, to: superlayer)
   }
   return superlayer
 }
@@ -83,3 +76,18 @@ public extension CALayer {
   }
 }
 
+@discardableResult
+fileprivate func addSublayer(_ sublayer: Any?, to superlayer: CALayer) -> CALayer {
+  if case Optional<Any>.none = sublayer {
+    return superlayer
+  }
+
+  if let layer = sublayer as? CALayer {
+    superlayer.addSublayer(layer)
+  } else if let (layer, index) = sublayer as? (CALayer, Int) {
+    superlayer.insertSublayer(layer, at: UInt32(index))
+  } else {
+    fatalError("WARNING: invalid sublayer: \(String(describing: superlayer))")
+  }
+  return superlayer
+}

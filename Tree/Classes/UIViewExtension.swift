@@ -35,7 +35,52 @@ import UIKit
 /// - Returns: The superview.
 @discardableResult
 public func <-(superview: UIView, subviewOrSublayer: AnyObject?) -> UIView {
-  guard subviewOrSublayer != nil else { return superview }
+  return addSubviewOrSublayer(subviewOrSublayer as Any, to: superview)
+}
+
+/// Adds a view to the end of the receiver’s list of subviews.
+/// - Parameters:
+///   - superview: The superview.
+///   - subviewOrSublayer: The view or layer to be added. After being added, this view or layer appears on top of any other subviews.
+/// - Returns: The superview.
+@discardableResult
+public func <-(superview: UIView, subviewOrSublayer: (AnyObject?, Int)) -> UIView {
+  return addSubviewOrSublayer(subviewOrSublayer, to: superview)
+}
+
+/// Adds the views to the end of the receiver’s list of subviews.
+/// - Parameters:
+///   - superview: The superview.
+///   - subviewOrSublayers: The views or layers to be added. After being added, these views or layers appear on top of any other subviews.
+/// - Returns: The superview.
+@discardableResult
+public func <-(superview: UIView, subviewOrSublayers: [Any?]) -> UIView {
+  for subviewOrSublayer in subviewOrSublayers {
+    addSubviewOrSublayer(subviewOrSublayer, to: superview)
+  }
+  return superview
+}
+
+public extension UIView {
+  /// Adds the views to the end of the receiver’s list of subviews.
+  /// - Parameter subviews: The views to be added. After being added, these views appear on top of any other subviews.
+  func addSubviews(_ subviews: [UIView?]) {
+    subviews
+      .compactMap { $0 }
+      .forEach { addSubview($0) }
+  }
+
+  /// Unlinks all subviews from their superview and their window, and removes these from the responder chain.
+  func removeAllSubviews() {
+    subviews.forEach { $0.removeFromSuperview() }
+  }
+}
+
+@discardableResult
+fileprivate func addSubviewOrSublayer(_ subviewOrSublayer: Any?, to superview: UIView) -> UIView {
+  if case Optional<Any>.none = subviewOrSublayer {
+    return superview
+  }
 
   let contentView: UIView
   if let superview = superview as? UIVisualEffectView {
@@ -55,50 +100,4 @@ public func <-(superview: UIView, subviewOrSublayer: AnyObject?) -> UIView {
     fatalError("WARNING: invalid subviewOrSublayer: \(String(describing: subviewOrSublayer))")
   }
   return superview
-}
-
-/// Adds the views to the end of the receiver’s list of subviews.
-/// - Parameters:
-///   - superview: The superview.
-///   - subviewOrSublayers: The views or layers to be added. After being added, these views or layers appear on top of any other subviews.
-/// - Returns: The superview.
-@discardableResult
-public func <-(superview: UIView, subviewOrSublayers: [AnyObject?]) -> UIView {
-  let contentView: UIView
-  if let superview = superview as? UIVisualEffectView {
-    contentView = superview.contentView
-  } else {
-    contentView = superview
-  }
-  for subviewOrSublayer in subviewOrSublayers {
-    guard subviewOrSublayer != nil else { continue }
-
-    if let view = subviewOrSublayer as? UIView {
-      contentView.addSubview(view)
-    } else if let layer = subviewOrSublayer as? CALayer {
-      contentView.layer.addSublayer(layer)
-    } else if let (view, index) = subviewOrSublayer as? (UIView, Int) {
-      contentView.insertSubview(view, at: index)
-    } else if let (layer, index) = subviewOrSublayer as? (CALayer, Int) {
-      contentView.layer.insertSublayer(layer, at: UInt32(index))
-    } else {
-      fatalError("WARNING: invalid subviewOrSublayer: \(String(describing: subviewOrSublayer))")
-    }
-  }
-  return superview
-}
-
-public extension UIView {
-  /// Adds the views to the end of the receiver’s list of subviews.
-  /// - Parameter subviews: The views to be added. After being added, these views appear on top of any other subviews.
-  func addSubviews(_ subviews: [UIView?]) {
-    subviews
-      .compactMap { $0 }
-      .forEach { addSubview($0) }
-  }
-
-  /// Unlinks all subviews from their superview and their window, and removes these from the responder chain.
-  func removeAllSubviews() {
-    subviews.forEach { $0.removeFromSuperview() }
-  }
 }
