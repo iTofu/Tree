@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Tree
 
 class ViewController: UIViewController {
 
@@ -53,6 +52,8 @@ class ViewController: UIViewController {
     view.layer <- [
       aLayer,
       bLayer,
+      nil,
+      // lalala...
     ]
   }
 
@@ -64,15 +65,17 @@ class ViewController: UIViewController {
     stackView.distribution = .fillEqually
 
     let aView = UIView()
-    aView.backgroundColor = .green
+    aView.backgroundColor = .blue
 
     let bView = UIView()
-    bView.backgroundColor = .blue
+    bView.backgroundColor = .green
 
+    view <- (stackView, 0)
     view <- [
+      nil,
       stackView <- [
         aView,
-        bView,
+        (bView, 0), // insert bView at index 0
       ],
     ]
   }

@@ -511,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B5E27EA56C915870AC235F20 /* Pods-Tree_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -533,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C8E36D76549F0C85B8801EED /* Pods-Tree_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

@@ -11,7 +11,12 @@
 
 🎏 Tree can help you manage views more clearly.
 
-⚠️ **Import: You'd best using this lib after Swift 5.4, otherwise you have to do `import Tree` everywhere.** [Swift Bugfix Link](https://forums.swift.org/t/exported-import-does-not-properly-export-custom-operators/39090)
+⚠️ **If you using this lib after Swift 5.4, you could `@_exported import Tree`, otherwise you may have to `import Tree` everywhere.** [Swift Bugfix Link](https://forums.swift.org/t/exported-import-does-not-properly-export-custom-operators/39090)
+
+> Checking your current swift version:
+>  ```shell
+>  swift --version
+>  ```
 
 ## Example
 
@@ -37,23 +42,32 @@ pod 'Tree'
 - Add subviews (or stackView) or layers:
 
   ```swift
+  // import
+  import Tree
+  // or global import
+  @_exported import Tree
+  
   // view
   view <- [
     aView,
     bView <- [
       cView,
     ],
-    aStackView <- [
-      aButton,
-      bButton,
+    dLayer,
+    eStackView <- [
+      fButton,
+      gButton,
+      (hButton, 0), // insert hButton at index 0
     ],
-    judge ? dView : nil,
+    judge ? iView : nil,
   ]
   
   // layer
   layer <- [
     aLayer,
     bLayer,
+    nil,
+    // lalala...
   ]
   ```
 

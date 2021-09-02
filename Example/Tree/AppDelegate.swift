@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@_exported import Tree
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

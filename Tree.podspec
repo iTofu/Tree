@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Tree'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'Tree can help you manage views and layers more clearly.'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,8 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Leo' => 'leodaxia@gmail.com' }
-  s.source           = { :git => 'https://github.com/iTofu/Tree.git', :tag => 'v' + s.version.to_s }
+  s.source           = { :git => 'https://github.com/iTofu/Tree.git',
+                         :tag => 'v' + s.version.to_s }
   s.social_media_url = 'https://twitter.com/leodaxia'
 
   s.swift_version    = "5.0"
@@ -34,7 +35,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'Tree/Classes/**/*.swift'
+  s.source_files = 'Tree/Classes/**/*.{swift,h,m}'
+  s.frameworks   = 'UIKit'
   
   # s.resource_bundles = {
   #   'Tree' => ['Tree/Assets/*.png']

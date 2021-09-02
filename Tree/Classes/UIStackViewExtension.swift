@@ -36,16 +36,18 @@ import UIKit
 @available(iOS 9.0, *)
 @discardableResult
 public func <-(superview: UIStackView, subview: AnyObject?) -> UIStackView {
-  guard let subview = subview else { return superview }
+  return addSubview(subview as Any, to: superview)
+}
 
-  if let view = subview as? UIView {
-    superview.addArrangedSubview(view)
-  } else if let (view, index) = subview as? (UIView, Int) {
-    superview.insertArrangedSubview(view, at: index)
-  } else {
-    fatalError("WARNING: invalid subview: \(String(describing: subview))")
-  }
-  return superview
+/// Adds a view to the end of the receiver’s list of subviews.
+/// - Parameters:
+///   - superview: The superview.
+///   - subview: The view to be added. After being added, this view appears on top of any other subviews.
+/// - Returns: The superview.
+@available(iOS 9.0, *)
+@discardableResult
+public func <-(superview: UIStackView, subview: (AnyObject?, Int)) -> UIStackView {
+  return addSubview(subview, to: superview)
 }
 
 /// Adds the views to the end of the receiver’s list of subviews.
@@ -55,17 +57,9 @@ public func <-(superview: UIStackView, subview: AnyObject?) -> UIStackView {
 /// - Returns: The superview.
 @available(iOS 9.0, *)
 @discardableResult
-public func <-(superview: UIStackView, subviews: [AnyObject?]) -> UIStackView {
+public func <-(superview: UIStackView, subviews: [Any?]) -> UIStackView {
   for subview in subviews {
-    guard subview != nil else { continue }
-
-    if let view = subview as? UIView {
-      superview.addArrangedSubview(view)
-    } else if let (view, index) = subview as? (UIView, Int) {
-      superview.insertArrangedSubview(view, at: index)
-    } else {
-      fatalError("WARNING: invalid subview: \(String(describing: subview))")
-    }
+    addSubview(subview, to: superview)
   }
   return superview
 }
@@ -87,4 +81,21 @@ public extension UIStackView {
       $0.removeFromSuperview()
     }
   }
+}
+
+@available(iOS 9.0, *)
+@discardableResult
+fileprivate func addSubview(_ subview: Any?, to superview: UIStackView) -> UIStackView {
+  if case Optional<Any>.none = subview {
+    return superview
+  }
+
+  if let view = subview as? UIView {
+    superview.addArrangedSubview(view)
+  } else if let (view, index) = subview as? (UIView, Int) {
+    superview.insertArrangedSubview(view, at: index)
+  } else {
+    fatalError("WARNING: invalid subview: \(String(describing: subview))")
+  }
+  return superview
 }
