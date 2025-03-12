@@ -30,8 +30,27 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-Tree is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
+
+Once you have your Swift package set up, adding Tree as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift` or the Package list in Xcode.
+
+```swift
+dependencies: [
+  .package(url: "https://github.com/iTofu/Tree.git", .upToNextMajor(from: "0.5.0"))
+]
+```
+
+Normally you'll want to depend on the `Tree` target:
+
+```swift
+.product(name: "Tree", package: "Tree")
+```
+
+### CocoaPods
+
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Tree into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 pod 'Tree'
@@ -46,7 +65,7 @@ pod 'Tree'
   import Tree
   // or global import
   @_exported import Tree
-  
+
   // view
   view <- [
     aView,
@@ -61,7 +80,7 @@ pod 'Tree'
     ],
     judge ? iView : nil,
   ]
-  
+
   // layer
   layer <- [
     aLayer,
