@@ -1,6 +1,6 @@
 {
   "name": "Tree",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "summary": "Tree can help you manage views and layers more clearly.",
   "description": "🎏 Tree can help you manage views and layers more clearly.",
   "homepage": "https://github.com/iTofu/Tree",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/iTofu/Tree.git",
-    "tag": "v0.4.1"
+    "tag": "v0.5.0"
   },
   "social_media_url": "https://twitter.com/leodaxia",
   "swift_versions": [
@@ -23,7 +23,7 @@
     "5.0"
   ],
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "Tree/Classes/**/*.{swift,h,m}",
   "frameworks": "UIKit",

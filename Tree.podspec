@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Tree'
-  s.version          = '0.4.1'
+  s.version          = '0.5.0'
   s.summary          = 'Tree can help you manage views and layers more clearly.'
 
 # This description is used to generate tags and improve search results.
@@ -33,11 +33,11 @@ Pod::Spec.new do |s|
   s.swift_version    = "5.0"
   s.swift_versions   = ['4.0', '4.2', '5.0']
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'Tree/Classes/**/*.{swift,h,m}'
   s.frameworks   = 'UIKit'
-  
+
   # s.resource_bundles = {
   #   'Tree' => ['Tree/Assets/*.png']
   # }
